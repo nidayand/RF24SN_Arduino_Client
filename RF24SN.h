@@ -22,7 +22,7 @@ typedef struct{
 class RF24SN
 {
   public:
-    RF24SN(RF24* radio, uint64_t baseAddress, uint8_t nodeId);
+    RF24SN(RF24* radio, uint64_t baseAddress, uint8_t nodeId, rf24_datarate_e dataRate);
     void begin();
     bool publish(uint8_t sensorId, float value);
     bool publish(uint8_t sensorId, float value, int retries);
@@ -41,6 +41,7 @@ class RF24SN
     uint64_t _baseAddress;
     uint8_t _nodeId;
     uint64_t _nodeAddress;
+    rf24_datarate_e _dataRate;
     void printPacketDetails(RF24SNPacket packet);
     RF24SNPacket createPacket(uint8_t type, uint8_t sensorId, float value);
     RF24SNPacket createPacket();

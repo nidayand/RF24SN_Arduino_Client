@@ -7,13 +7,14 @@
 #include "Arduino.h"
 #include "RF24SN.h"
 
-RF24SN::RF24SN(RF24* radio, uint64_t baseAddress, uint8_t nodeId)
+RF24SN::RF24SN(RF24* radio, uint64_t baseAddress, uint8_t nodeId, rf24_datarate_e dataRate)
 {
     //initialize private variables
     _radio = radio;
     _baseAddress = baseAddress;
     _nodeId = nodeId;
     _nodeAddress = _baseAddress + _nodeId;
+    _dataRate = dataRate;
 }
 
 
@@ -24,7 +25,7 @@ void RF24SN::begin()
     _radio->begin();
 
     //_radio->setChannel(4);
-    //_radio->setDataRate(RF24_250KBPS);
+    _radio->setDataRate(_dataRate);
     //_radio->setRetries(0,0);
     
     _radio->setPayloadSize(sizeof(RF24SNPacket));

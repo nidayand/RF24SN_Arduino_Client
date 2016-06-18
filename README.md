@@ -1,6 +1,9 @@
 RF24SN Arduino Client Library
 =============================
 
+NOTE: This is a fork! Testing is ongoing.. The following has been changed:
+- Added 1 param to be able to set the data rate. RF24_1MBPS / RF24_2MBPS / RF24_250KBPS
+
 Implements the client side of [RF24SN](https://github.com/VaclavSynacek/RF24SN). For full description of protocol, client server setup or alternative implementations, see [RF24SN](https://github.com/VaclavSynacek/RF24SN)
 
 
@@ -28,7 +31,7 @@ update depending on your wiring setup. With the default wiring described underne
 #define RF24_CS_PIN 10
 
 RF24 radio(RF24_CE_PIN, RF24_CS_PIN);
-RF24SN rf24sn( &radio, RF24SN_SERVER_ADDR, RF24SN_NODE_ID);
+RF24SN rf24sn( &radio, RF24SN_SERVER_ADDR, RF24SN_NODE_ID, RF24_1MBPS);
 
 void setup(void) {
 	rf24sn.begin();

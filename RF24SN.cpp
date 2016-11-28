@@ -28,6 +28,8 @@ void RF24SN::begin()
     _radio->setDataRate(_dataRate);
     //_radio->setRetries(0,0);
     
+    _radio->setPALevel(RF24_PA_MAX);
+
     _radio->setPayloadSize(sizeof(RF24SNPacket));
     _radio->openReadingPipe(1, _nodeAddress);   //pipe for application level ACKs from base. address unique to one node
     _radio->openWritingPipe(_baseAddress);      //pipe for packet broadcasting to base. pipe is shared between all nodes
